@@ -111,7 +111,6 @@
   .admin-login { display: none; animation: slideUp 0.5s cubic-bezier(0.16,1,0.3,1); }
   .back-btn { background: none; border: none; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; padding: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 6px; transition: color 0.2s; width: auto; box-shadow: none; }
   .back-btn:hover { color: var(--text); transform: none; box-shadow: none; }
-  .loading { color: var(--muted); font-size: 13px; text-align: center; padding: 20px 0; }
   .admin-scroll { max-height: 340px; overflow-y: auto; }
   .admin-scroll::-webkit-scrollbar { width: 4px; }
   .admin-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
@@ -120,7 +119,6 @@
 <body>
 <div class="container">
   <div class="card">
-    <!-- Main Form -->
     <div id="formScreen">
       <div class="logo">
         <span class="logo-icon">💘</span>
@@ -138,7 +136,6 @@
       <button class="btn" onclick="calculate()">Calculate 💘</button>
     </div>
 
-    <!-- Result Screen -->
     <div id="resultScreen" class="result">
       <div class="names-display" id="namesDisplay"></div>
       <div class="meter-wrap">
@@ -150,7 +147,6 @@
       <button class="btn btn-again" onclick="tryAgain()">Try Again</button>
     </div>
 
-    <!-- Admin Login -->
     <div id="adminLogin" class="admin-login">
       <button class="back-btn" onclick="showForm()">← Back</button>
       <div class="logo">
@@ -165,7 +161,6 @@
       <button class="btn" onclick="checkAdmin()">Enter</button>
     </div>
 
-    <!-- Admin Page -->
     <div id="adminPage" class="admin-page">
       <button class="back-btn" onclick="showForm()">← Back</button>
       <div class="admin-header">
@@ -173,35 +168,31 @@
         <div class="admin-badge">SECRET</div>
       </div>
       <div class="admin-scroll">
-        <div id="entriesList"><div class="loading">Loading...</div></div>
+        <div id="entriesList"><div class="empty-state">Loading...</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Firebase -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-  // 🔥 YOUR FIREBASE CONFIG - Nitin replace this with your own!
   const firebaseConfig = {
-  apiKey: "AIzaSyD1UqYnaQ2oa89Nc4xuSZ-MJdmMrZxg-ys",
-  authDomain: "lovemeter-15d9f.firebaseapp.com",
-  databaseURL: "https://lovemeter-15d9f-default-rtdb.firebaseio.com",
-  projectId: "lovemeter-15d9f",
-  storageBucket: "lovemeter-15d9f.firebasestorage.app",
-  messagingSenderId: "578261920165",
-  appId: "1:578261920165:web:74a798baa98cfd3433e04c",
-  measurementId: "G-H11F76X21P"
-};
-
+    apiKey: "AIzaSyD1UqYnaQ2oa89Nc4xuSZ-MJdmMrZxg-ys",
+    authDomain: "lovemeter-15d9f.firebaseapp.com",
+    databaseURL: "https://lovemeter-15d9f-default-rtdb.firebaseio.com",
+    projectId: "lovemeter-15d9f",
+    storageBucket: "lovemeter-15d9f.firebasestorage.app",
+    messagingSenderId: "578261920165",
+    appId: "1:578261920165:web:74a798baa98cfd3433e04c",
+    measurementId: "G-H11F76X21P"
+  };
 
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
   const entriesRef = ref(db, 'entries');
 
-  // Make these available globally
   window.saveEntry = (entry) => push(entriesRef, entry);
   window.listenEntries = (callback) => onValue(entriesRef, callback);
 </script>
@@ -227,11 +218,10 @@
     return 'zero';
   }
   function getRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-  function generateScore(name1, name2) {
-    const combined = (name1 + name2).toLowerCase().replace(/\s/g, '');
-    let hash = 0;
-    for (let c of combined) hash = (hash * 31 + c.charCodeAt(0)) % 100;
-    return Math.max(10, Math.min(97, hash));
+
+  // RANDOMIZED score — different every time! 😄
+  function generateScore() {
+    return Math.floor(Math.random() * 100) + 1;
   }
 
   function calculate() {
@@ -239,17 +229,11 @@
     const name2 = document.getElementById('crushName').value.trim();
     if (!name1 || !name2) { alert('Enter both names!'); return; }
 
-    const score = generateScore(name1, name2);
+    const score = generateScore();
     const cat = getCategory(score);
 
-    // Save to Firebase!
-    const entry = {
-      name1, name2, score,
-      time: new Date().toLocaleString('en-IN')
-    };
-    if (window.saveEntry) {
-      window.saveEntry(entry).catch(() => {});
-    }
+    const entry = { name1, name2, score, time: new Date().toLocaleString('en-IN') };
+    if (window.saveEntry) window.saveEntry(entry).catch(() => {});
 
     document.getElementById('formScreen').style.display = 'none';
     document.getElementById('resultScreen').style.display = 'block';
@@ -302,7 +286,7 @@
   function loadEntries() {
     const list = document.getElementById('entriesList');
     if (!window.listenEntries) {
-      list.innerHTML = '<div class="empty-state">Database not connected yet!<br>Follow setup steps.</div>';
+      list.innerHTML = '<div class="empty-state">Database not connected!</div>';
       return;
     }
     window.listenEntries((snapshot) => {
@@ -324,14 +308,12 @@
     });
   }
 
-  // Make functions global
   window.calculate = calculate;
   window.tryAgain = tryAgain;
   window.showForm = showForm;
   window.showAdminLogin = showAdminLogin;
   window.checkAdmin = checkAdmin;
 
-  // Secret shortcut Alt+0
   document.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
       if (document.getElementById('formScreen').style.display !== 'none') calculate();
