@@ -15,9 +15,7 @@
     --text: #f0f0f0;
     --muted: #666680;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -29,8 +27,6 @@
     overflow: hidden;
     position: relative;
   }
-
-  /* background blobs */
   body::before, body::after {
     content: '';
     position: fixed;
@@ -51,306 +47,79 @@
     bottom: -100px; right: -100px;
     animation: float2 10s ease-in-out infinite;
   }
-
-  @keyframes float1 {
-    0%, 100% { transform: translate(0,0); }
-    50% { transform: translate(40px, 30px); }
-  }
-  @keyframes float2 {
-    0%, 100% { transform: translate(0,0); }
-    50% { transform: translate(-30px, -40px); }
-  }
-
-  .container {
-    width: 100%;
-    max-width: 460px;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
-  }
-
+  @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,30px)} }
+  @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,-40px)} }
+  .container { width: 100%; max-width: 460px; padding: 20px; position: relative; z-index: 1; }
   .card {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 24px;
     padding: 40px 36px;
     box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: slideUp 0.6s cubic-bezier(0.16,1,0.3,1);
   }
-
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .logo {
-    text-align: center;
-    margin-bottom: 32px;
-  }
-
-  .logo-icon {
-    font-size: 48px;
-    display: block;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-  }
-
+  @keyframes slideUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  .logo { text-align: center; margin-bottom: 32px; }
+  .logo-icon { font-size: 48px; display: block; animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
   h1 {
     font-family: 'Syne', sans-serif;
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    margin-top: 8px;
+    font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-top: 8px;
     background: linear-gradient(135deg, #fff 0%, var(--accent2) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
-
-  .subtitle {
-    color: var(--muted);
-    font-size: 13px;
-    margin-top: 4px;
-  }
-
-  .form-group {
-    margin-bottom: 16px;
-  }
-
-  label {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-
+  .subtitle { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .form-group { margin-bottom: 16px; }
+  label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
   input {
-    width: 100%;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 16px;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    outline: none;
+    width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 16px; color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: 15px; outline: none;
     transition: border-color 0.2s, background 0.2s;
   }
-
-  input:focus {
-    border-color: var(--accent);
-    background: rgba(255,77,109,0.06);
-  }
-
+  input:focus { border-color: var(--accent); background: rgba(255,77,109,0.06); }
   input::placeholder { color: var(--muted); }
-
   .btn {
-    width: 100%;
-    padding: 15px;
-    background: var(--accent);
-    border: none;
-    border-radius: 12px;
-    color: white;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+    width: 100%; padding: 15px; background: var(--accent); border: none;
+    border-radius: 12px; color: white; font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: 0.5px; cursor: pointer;
+    margin-top: 8px; transition: transform 0.15s, box-shadow 0.15s;
     box-shadow: 0 8px 24px rgba(255,77,109,0.3);
   }
-
-  .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(255,77,109,0.4);
-  }
-
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,77,109,0.4); }
   .btn:active { transform: translateY(0); }
-
-  /* Result screen */
-  .result {
-    display: none;
-    text-align: center;
-    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .names-display {
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 28px;
-  }
-
-  .names-display span {
-    color: var(--accent);
-  }
-
-  .meter-wrap {
-    position: relative;
-    margin: 20px 0 28px;
-  }
-
-  .meter-bar {
-    height: 14px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 99px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-
-  .meter-fill {
-    height: 100%;
-    border-radius: 99px;
-    background: linear-gradient(90deg, #ff4d6d, #ff8fa3);
-    width: 0%;
-    transition: width 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 0 16px rgba(255,77,109,0.5);
-  }
-
-  .percent {
-    font-family: 'Syne', sans-serif;
-    font-size: 72px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #fff, var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1;
-    margin: 16px 0 8px;
-  }
-
-  .verdict {
-    font-size: 16px;
-    color: var(--accent2);
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-
-  .fun-comment {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 28px;
-    line-height: 1.6;
-  }
-
-  .btn-again {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    box-shadow: none;
-    font-size: 13px;
-    padding: 12px;
-  }
-
-  .btn-again:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    box-shadow: none;
-    transform: none;
-  }
-
-  /* Admin page */
-  .admin-page {
-    display: none;
-    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .admin-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-
-  .admin-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 20px;
-    font-weight: 800;
-  }
-
-  .admin-badge {
-    background: var(--accent);
-    color: white;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 99px;
-    letter-spacing: 1px;
-  }
-
-  .entry {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .entry-names {
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  .entry-names .crush {
-    color: var(--accent);
-  }
-
-  .entry-score {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 18px;
-    color: var(--accent);
-  }
-
-  .empty-state {
-    text-align: center;
-    color: var(--muted);
-    font-size: 14px;
-    padding: 20px 0;
-  }
-
-
-
-  /* Admin login */
-  .admin-login {
-    display: none;
-    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .back-btn {
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    cursor: pointer;
-    padding: 0;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: color 0.2s;
-    width: auto;
-    box-shadow: none;
-  }
+  .result { display: none; text-align: center; animation: slideUp 0.5s cubic-bezier(0.16,1,0.3,1); }
+  .names-display { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 28px; }
+  .names-display span { color: var(--accent); }
+  .meter-wrap { position: relative; margin: 20px 0 28px; }
+  .meter-bar { height: 14px; background: rgba(255,255,255,0.06); border-radius: 99px; overflow: hidden; border: 1px solid var(--border); }
+  .meter-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #ff4d6d, #ff8fa3); width: 0%; transition: width 1.8s cubic-bezier(0.16,1,0.3,1); box-shadow: 0 0 16px rgba(255,77,109,0.5); }
+  .percent { font-family: 'Syne', sans-serif; font-size: 72px; font-weight: 800; background: linear-gradient(135deg, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin: 16px 0 8px; }
+  .verdict { font-size: 16px; color: var(--accent2); font-weight: 500; margin-bottom: 8px; }
+  .fun-comment { font-size: 13px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
+  .btn-again { background: transparent; border: 1px solid var(--border); color: var(--muted); box-shadow: none; font-size: 13px; padding: 12px; }
+  .btn-again:hover { border-color: var(--accent); color: var(--accent); box-shadow: none; transform: none; }
+  .admin-page { display: none; animation: slideUp 0.5s cubic-bezier(0.16,1,0.3,1); }
+  .admin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .admin-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; }
+  .admin-badge { background: var(--accent); color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 99px; letter-spacing: 1px; }
+  .entry { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+  .entry-names { font-size: 14px; font-weight: 500; }
+  .entry-names .crush { color: var(--accent); }
+  .entry-score { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: var(--accent); }
+  .empty-state { text-align: center; color: var(--muted); font-size: 14px; padding: 20px 0; }
+  .admin-login { display: none; animation: slideUp 0.5s cubic-bezier(0.16,1,0.3,1); }
+  .back-btn { background: none; border: none; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; padding: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 6px; transition: color 0.2s; width: auto; box-shadow: none; }
   .back-btn:hover { color: var(--text); transform: none; box-shadow: none; }
+  .loading { color: var(--muted); font-size: 13px; text-align: center; padding: 20px 0; }
+  .admin-scroll { max-height: 340px; overflow-y: auto; }
+  .admin-scroll::-webkit-scrollbar { width: 4px; }
+  .admin-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
 </style>
 </head>
 <body>
-
 <div class="container">
   <div class="card">
-
     <!-- Main Form -->
     <div id="formScreen">
       <div class="logo">
@@ -358,34 +127,26 @@
         <h1>Love Meter</h1>
         <p class="subtitle">Find out your compatibility score</p>
       </div>
-
       <div class="form-group">
         <label>Your Name</label>
         <input type="text" id="yourName" placeholder="Enter your name" autocomplete="off">
       </div>
-
       <div class="form-group">
         <label>Their Name</label>
         <input type="text" id="crushName" placeholder="Enter their name" autocomplete="off">
       </div>
-
       <button class="btn" onclick="calculate()">Calculate 💘</button>
     </div>
 
     <!-- Result Screen -->
     <div id="resultScreen" class="result">
       <div class="names-display" id="namesDisplay"></div>
-
       <div class="meter-wrap">
-        <div class="meter-bar">
-          <div class="meter-fill" id="meterFill"></div>
-        </div>
+        <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
       </div>
-
       <div class="percent" id="percentDisplay">0%</div>
       <div class="verdict" id="verdictDisplay"></div>
       <div class="fun-comment" id="commentDisplay"></div>
-
       <button class="btn btn-again" onclick="tryAgain()">Try Again</button>
     </div>
 
@@ -411,26 +172,45 @@
         <div class="admin-title">All Results 😏</div>
         <div class="admin-badge">SECRET</div>
       </div>
-      <div id="entriesList"></div>
+      <div class="admin-scroll">
+        <div id="entriesList"><div class="loading">Loading...</div></div>
+      </div>
     </div>
-
   </div>
 </div>
 
+<!-- Firebase -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
+  // 🔥 YOUR FIREBASE CONFIG - Nitin replace this with your own!
+  const firebaseConfig = {
+    apiKey: "AIzaSyDEMO-ReplaceWithYours",
+    authDomain: "lovemeter-demo.firebaseapp.com",
+    databaseURL: "https://lovemeter-demo-default-rtdb.firebaseio.com",
+    projectId: "lovemeter-demo",
+    storageBucket: "lovemeter-demo.appspot.com",
+    messagingSenderId: "000000000000",
+    appId: "1:000000000000:web:0000000000000000"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const entriesRef = ref(db, 'entries');
+
+  // Make these available globally
+  window.saveEntry = (entry) => push(entriesRef, entry);
+  window.listenEntries = (callback) => onValue(entriesRef, callback);
+</script>
 
 <script>
-  // Storage for all entries
-  let entries = [];
-
-  // Results data
   const verdicts = {
     high: ["Perfect Match!", "Made for each other!", "Unbeatable duo!"],
     mid: ["Pretty good vibes!", "Worth a shot!", "Could work out!"],
     low: ["Hmm... maybe not?", "It's complicated.", "Keep searching!"],
     zero: ["Bro... no.", "Hard pass.", "Not happening 💀"]
   };
-
   const comments = {
     high: ["The universe clearly has plans for you two. 🌌", "Your friends already saw this coming. 👀", "Someone confess already. 😤"],
     mid: ["There's definitely something there... 👀", "Give it a chance, you never know!", "The vibe is real, just needs time."],
@@ -444,57 +224,43 @@
     if (score >= 25) return 'low';
     return 'zero';
   }
-
-  function getRandom(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
-
+  function getRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
   function generateScore(name1, name2) {
-    // Deterministic but looks random based on names
     const combined = (name1 + name2).toLowerCase().replace(/\s/g, '');
     let hash = 0;
     for (let c of combined) hash = (hash * 31 + c.charCodeAt(0)) % 100;
-    // Make sure it's somewhat interesting (not too many 0s or 100s)
     return Math.max(10, Math.min(97, hash));
   }
 
   function calculate() {
     const name1 = document.getElementById('yourName').value.trim();
     const name2 = document.getElementById('crushName').value.trim();
-
-    if (!name1 || !name2) {
-      alert('Enter both names!');
-      return;
-    }
+    if (!name1 || !name2) { alert('Enter both names!'); return; }
 
     const score = generateScore(name1, name2);
     const cat = getCategory(score);
 
-    // Save entry secretly 😏
-    entries.push({ name1, name2, score, time: new Date().toLocaleTimeString() });
+    // Save to Firebase!
+    const entry = {
+      name1, name2, score,
+      time: new Date().toLocaleString('en-IN')
+    };
+    if (window.saveEntry) {
+      window.saveEntry(entry).catch(() => {});
+    }
 
-    // Show result
     document.getElementById('formScreen').style.display = 'none';
-    const rs = document.getElementById('resultScreen');
-    rs.style.display = 'block';
-
-    document.getElementById('namesDisplay').innerHTML =
-      `<span>${name1}</span> & <span>${name2}</span>`;
-
+    document.getElementById('resultScreen').style.display = 'block';
+    document.getElementById('namesDisplay').innerHTML = `<span>${name1}</span> & <span>${name2}</span>`;
     document.getElementById('verdictDisplay').textContent = getRandom(verdicts[cat]);
     document.getElementById('commentDisplay').textContent = getRandom(comments[cat]);
 
-    // Animate meter
-    setTimeout(() => {
-      document.getElementById('meterFill').style.width = score + '%';
-    }, 100);
+    setTimeout(() => { document.getElementById('meterFill').style.width = score + '%'; }, 100);
 
-    // Count up number
     let current = 0;
-    const target = score;
     const interval = setInterval(() => {
       current += 2;
-      if (current >= target) { current = target; clearInterval(interval); }
+      if (current >= score) { current = score; clearInterval(interval); }
       document.getElementById('percentDisplay').textContent = current + '%';
     }, 30);
   }
@@ -525,39 +291,51 @@
     if (pass === 'nitin123') {
       document.getElementById('adminLogin').style.display = 'none';
       document.getElementById('adminPage').style.display = 'block';
-      renderEntries();
+      loadEntries();
     } else {
       alert('Wrong password!');
     }
   }
 
-  function renderEntries() {
+  function loadEntries() {
     const list = document.getElementById('entriesList');
-    if (entries.length === 0) {
-      list.innerHTML = '<div class="empty-state">No results yet!<br>Share the link with your friends 😄</div>';
+    if (!window.listenEntries) {
+      list.innerHTML = '<div class="empty-state">Database not connected yet!<br>Follow setup steps.</div>';
       return;
     }
-    list.innerHTML = entries.map(e => `
-      <div class="entry">
-        <div class="entry-names">
-          ${e.name1} ❤️ <span class="crush">${e.name2}</span>
-          <div style="font-size:11px;color:var(--muted);margin-top:2px">${e.time}</div>
+    window.listenEntries((snapshot) => {
+      const data = snapshot.val();
+      if (!data) {
+        list.innerHTML = '<div class="empty-state">No results yet!<br>Share the link 😄</div>';
+        return;
+      }
+      const entries = Object.values(data).reverse();
+      list.innerHTML = entries.map(e => `
+        <div class="entry">
+          <div class="entry-names">
+            ${e.name1} ❤️ <span class="crush">${e.name2}</span>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">${e.time}</div>
+          </div>
+          <div class="entry-score">${e.score}%</div>
         </div>
-        <div class="entry-score">${e.score}%</div>
-      </div>
-    `).reverse().join('');
+      `).join('');
+    });
   }
 
-  // Keyboard shortcuts
+  // Make functions global
+  window.calculate = calculate;
+  window.tryAgain = tryAgain;
+  window.showForm = showForm;
+  window.showAdminLogin = showAdminLogin;
+  window.checkAdmin = checkAdmin;
+
+  // Secret shortcut Alt+0
   document.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
       if (document.getElementById('formScreen').style.display !== 'none') calculate();
       if (document.getElementById('adminLogin').style.display !== 'none') checkAdmin();
     }
-    // Secret admin: Alt + 0
-    if (e.altKey && e.key === '0') {
-      showAdminLogin();
-    }
+    if (e.altKey && e.key === '0') showAdminLogin();
   });
 </script>
 </body>
